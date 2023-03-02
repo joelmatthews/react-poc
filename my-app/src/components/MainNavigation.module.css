@@ -1,0 +1,40 @@
+.main-nav {
+    height: 100%;
+    width: 15rem;
+    background-color: rgb(2, 2, 145);
+}
+
+.list-of-links {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding-left: 0;
+}
+
+.list-of-links li {
+    padding: 1rem;
+    margin-left: 0;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.list-of-links li:hover {
+    background-color: rgb(2, 2, 175);
+}
+
+.list-of-links li a {
+    color: white;
+    text-decoration: none;
+}
+
+a.active {
+    background-color: rgb(2, 2, 175);
+    text-decoration: underline;
+}
+
+li:has(a.active) {
+    background-color: rgb(2, 2, 175);
+}
+
