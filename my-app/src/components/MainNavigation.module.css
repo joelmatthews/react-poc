@@ -22,6 +22,7 @@
 
 .list-of-links li:hover {
     background-color: rgb(2, 2, 175);
+    transition: all 0.3s;
 }
 
 .list-of-links li a {

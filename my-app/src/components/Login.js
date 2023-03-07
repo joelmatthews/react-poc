@@ -1,9 +1,10 @@
 import { Form, json, redirect } from "react-router-dom";
+import axios from 'axios';
 
 
 const Login = () => {
   return (
-    <Form method="post" action="/login">
+    <Form method="post" action="/">
       <div>
         <input type="email" name="email" />
       </div>
@@ -18,29 +19,29 @@ const Login = () => {
 export async function action({request, params}) {
   const formData = await request.formData();
 
-  const body = {
+  const requestData = {
     email: formData.get('email'),
     password: formData.get('password')
-  }
+  };
 
 
-  const response = await fetch('https://dev-api.zeroeyes.com/api/v1/Account/Login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'accept': 'text/plain'
-    },
-    body
-  });
+    try {
+      const response = await axios({
+        method: 'post',
+        url: 'https://dev-api.zeroeyes.com/api/v1/Account/Login',
+        data: requestData
+      });
+      
+      if (response.statusText === 'OK') {
+        return redirect('/alerts');
+      }
 
-  if (!response.ok) {
-    throw json({message: 'Unable to Login!'}, {status: response.status})
-  }
+    } catch (error) {
+      throw json({message: error.response.data}, {status: 400})
+    }
 
-  const resData = response.json();
-  console.log(resData);
+  return null;
 
-  return redirect('/alerts');
 } 
 
 export default Login;

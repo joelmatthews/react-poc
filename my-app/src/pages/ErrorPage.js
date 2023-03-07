@@ -4,11 +4,15 @@ import PageContent from "../components/PageContent";
 
 const ErrorPage = () => {
   const error = useRouteError();
-
-  console.log(error);
+  console.log(error)
 
   let title = "An Error Occured";
-  let message = "Something ";
+  let message = "Something went wrong";
+
+  if (error.status === 400) {
+    title = error.data.message;
+    message = "Unable to find associated user"
+  }
 
   if (error.status === 401) {
     title = "Not Authorized!";
