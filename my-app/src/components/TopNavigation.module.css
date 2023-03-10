@@ -1,0 +1,36 @@
+.topNav {
+    background-color: rgb(2, 2, 145);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+}
+
+.topNav img {
+    height: 50px;
+}
+
+.navFlexItem {
+    margin: 0 2rem;
+}
+
+.navFlexItem button {
+    padding: 0.5rem 0.75rem;
+    font-weight: 400;
+    color: rgb(2, 2, 145);
+    background-color: rgb(170, 170, 10);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.75s;
+}
+
+.navFlexItem button:hover {
+    background-color: rgb(2, 2, 145);
+    color: rgb(170, 170, 10);
+    border: 2px solid rgb(170, 170, 10);
+}

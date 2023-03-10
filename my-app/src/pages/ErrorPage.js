@@ -11,7 +11,7 @@ const ErrorPage = () => {
 
   if (error.status === 400) {
     title = error.data.message;
-    message = "Unable to find associated user"
+    message = "bad request"
   }
 
   if (error.status === 401) {

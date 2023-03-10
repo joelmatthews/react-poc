@@ -1,5 +1,6 @@
-import { json } from "react-router-dom";
 import { useLoaderData } from 'react-router-dom';
+
+import authInstance from "../util/axiosInterceptors";
 
 const AlertsPage = () => {
     const data = useLoaderData();
@@ -14,17 +15,7 @@ const AlertsPage = () => {
 };
 
 export async function loader() {
-    const response = await fetch('https://dev-api.zeroeyes.com/api/v1/Alerts');
-
-    if (!response.ok) {
-        throw json({message: 'Unable to GET alerts!'}, {status: response.status})
-    }
-
-
-    const alertData = response.json();
-    console.log(alertData);
-
-    return alertData;
+    authInstance.get()
 
 }
 
