@@ -13,6 +13,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <RootLayout />,
     errorElement: <ErrorPage />,
+    id: 'root',
     action: loginAction,
     loader: tokenLoader,
     children: [

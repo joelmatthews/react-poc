@@ -1,7 +1,8 @@
-import { useSubmit } from "react-router-dom";
+import { useSubmit, useRouteLoaderData } from "react-router-dom";
 import classes from "./TopNavigation.module.css";
 
 const TopNavigation = () => {
+  const token = useRouteLoaderData('root');
   const submit = useSubmit();
 
   const logoutHandler = () => {
@@ -16,7 +17,7 @@ const TopNavigation = () => {
         <img src="/ze-horiz-logo-200x30xxxhdpi.png" alt="ZeroEyes logo"/>
       </div>
       <div className={classes.navFlexItem}>
-        <button onClick={logoutHandler}>Logout</button>
+        {token && <button onClick={logoutHandler}>Logout</button>}
       </div>
     </nav>
   );

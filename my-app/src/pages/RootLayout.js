@@ -1,19 +1,20 @@
-import { Outlet } from 'react-router-dom'; 
+import { Outlet, useLoaderData } from "react-router-dom";
 
 import MainNavigation from "../components/MainNavigation";
-import TopNavigation from '../components/TopNavigation';
+import TopNavigation from "../components/TopNavigation";
 
 const RootLayout = () => {
-    return (
-        <>
-            <TopNavigation />
-            <MainNavigation />
-            <main style={{flexGrow: '1'}}>
-                <Outlet />
-            </main>
-        
-        </>
-    )
+  const token = useLoaderData();
+
+  return (
+    <>
+      <TopNavigation />
+      {token && <MainNavigation />}
+      <main style={{ flexGrow: "1" }}>
+        <Outlet />
+      </main>
+    </>
+  );
 };
 
 export default RootLayout;
