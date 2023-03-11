@@ -17,7 +17,7 @@ const TopNavigation = () => {
         <img src="/ze-horiz-logo-200x30xxxhdpi.png" alt="ZeroEyes logo"/>
       </div>
       <div className={classes.navFlexItem}>
-        {token && <button onClick={logoutHandler}>Logout</button>}
+        {token && <button onClick={logoutHandler}>Log out</button>}
       </div>
     </nav>
   );

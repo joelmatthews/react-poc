@@ -21,16 +21,15 @@
 .navFlexItem button {
     padding: 0.5rem 0.75rem;
     font-weight: 400;
-    color: rgb(2, 2, 145);
-    background-color: rgb(170, 170, 10);
+    color: rgb(150, 150, 150);
+    background-color: rgba(2, 2, 145, 0.9);
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: all 0.75s;
+    transition: all 0.3s;
 }
 
 .navFlexItem button:hover {
-    background-color: rgb(2, 2, 145);
-    color: rgb(170, 170, 10);
-    border: 2px solid rgb(170, 170, 10);
+    background-color: #fff;
+    color: rgb(59, 59, 59);
 }
