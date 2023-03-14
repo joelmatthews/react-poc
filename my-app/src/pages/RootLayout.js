@@ -4,13 +4,13 @@ import MainNavigation from "../components/MainNavigation";
 import TopNavigation from "../components/TopNavigation";
 
 const RootLayout = () => {
-  const token = useLoaderData();
+  const tokens = useLoaderData();
 
   return (
     <>
       <TopNavigation />
-      {token && <MainNavigation />}
-      <main style={{ flexGrow: "1" }}>
+      {tokens && <MainNavigation />}
+      <main style={{ flexGrow: "1", backgroundColor: '#D3D3D3' }}>
         <Outlet />
       </main>
     </>

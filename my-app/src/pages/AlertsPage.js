@@ -1,22 +1,32 @@
-import { useLoaderData } from 'react-router-dom';
+import { json } from "react-router-dom";
 
 import authInstance from "../util/axiosInterceptors";
 
-const AlertsPage = () => {
-    const data = useLoaderData();
+import PageContent from "../components/PageContent";
+import Alerts from "../components/Alerts";
+import { refreshTokens } from "../util/auth";
 
-    const stringifiedData = JSON.stringify(data);
-    return (
-        <>
-            <h3>Alerts</h3>
-            <p>{stringifiedData}</p>
-        </>
-    )
+const AlertsPage = () => {
+  return (
+    <PageContent title={null}>
+      <Alerts />
+    </PageContent>
+  );
 };
 
 export async function loader() {
-    authInstance.get()
-
+  refreshTokens();
+  try {
+    const response = await authInstance.get(
+      "https://dev-api.zeroeyes.com/api/v1/Alerts"
+    );
+    return response;
+  } catch (error) {
+    throw json(
+      { message: error.response.data },
+      { status: error.response.status }
+    );
+  }
 }
 
 export default AlertsPage;

@@ -1,0 +1,23 @@
+.alertQueue {
+    width: 150px;
+    border: 2px solid #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.totalAlerts {
+    width: 150px;
+    border: none;
+    border-bottom: 2px solid #fff;
+    text-align: center;
+
+}
+
+.thumbnail-placeholder {
+    height: 50px;
+    width: 100px;
+    text-align: center;
+    background-color: #252525;
+    color: #fff;
+}

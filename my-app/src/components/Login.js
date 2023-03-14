@@ -44,6 +44,8 @@ export async function action({ request }) {
 
       const accessToken = response.data.accesstoken;
       localStorage.setItem("token", accessToken);
+      const refreshToken = response.data.refreshtoken;
+      localStorage.setItem('refreshToken', refreshToken);
       return redirect("/");
     }
   } catch (error) {

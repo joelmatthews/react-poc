@@ -1,15 +1,33 @@
-export function getAuthToken() {
-  const token = localStorage.getItem("token");
+import authInstance from "./axiosInterceptors";
 
-  if (!token) {
+export function getTokens() {
+  const accessToken = localStorage.getItem("token");
+  const refreshToken = localStorage.getItem('refreshToken');
+
+  if (!accessToken || !refreshToken) {
     return null;
   }
 
-  return token;
+  return {
+    accessToken,
+    refreshToken
+  }
 }
 
+export async function refreshTokens () {
+  const tokens = getTokens();
+
+  const refreshed = await authInstance.post("https://dev-api.zeroeyes.com/api/v1/Account/RefreshToken", {
+    refreshtoken: tokens.refreshToken,
+    accesstoken: tokens.accessToken
+  });
+
+  localStorage.setItem('token', refreshed.data.accesstoken);
+  localStorage.setItem('refreshToken', refreshed.data.refreshtoken);
+};
+
 export function tokenLoader() {
-    return getAuthToken();
+    return getTokens();
 }
 
 
