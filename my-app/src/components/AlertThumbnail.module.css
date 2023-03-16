@@ -11,5 +11,9 @@
 }
 
 .selected {
+    border: 3px solid red;
+}
+
+.notSelected {
     border: 3px solid #fff;
 }

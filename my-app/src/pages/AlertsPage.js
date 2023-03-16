@@ -4,12 +4,15 @@ import authInstance from "../util/axiosInterceptors";
 
 import PageContent from "../components/PageContent";
 import Alerts from "../components/Alerts";
+import AlertsProvider from "../context/AlertsProvider";
 import { refreshTokens } from "../util/auth";
 
 const AlertsPage = () => {
   return (
     <PageContent title={null}>
-      <Alerts />
+      <AlertsProvider>
+        <Alerts />
+      </AlertsProvider>
     </PageContent>
   );
 };
@@ -20,6 +23,7 @@ export async function loader() {
     const response = await authInstance.get(
       "https://dev-api.zeroeyes.com/api/v1/Alerts"
     );
+    console.log(response);
     return response;
   } catch (error) {
     throw json(
