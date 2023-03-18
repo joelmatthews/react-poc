@@ -14,7 +14,7 @@ const AlertBody = ({ selectedAlert }) => {
   return (
     <div className={classes.alertBody}>
       <h3>{`Alert:${selectedAlert.id} / Client: ${selectedAlert.client.name} / Camera: ${selectedAlert.camera.name}`}</h3>
-      <Canvas width={"640px"} height={"360px"} draw={draw} />
+      <Canvas width={"640px"} height={"360px"} draw={draw} /> /* move these to env config mentioned in comments */
     </div>
   );
 };

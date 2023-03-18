@@ -29,6 +29,22 @@ export async function action({ request }) {
   };
 
   try {
+    //this is great, but I want you to consider DRY vs WET (Don't Repeat Yourself vs We Enjoy Typing)
+    //I'm seeing three results in the project for a string containing "https://dev-api.zeroeyes.com/api/v1/"
+    //I recommend something like a "BaseRestService" class that sets the base URL, and content-type,
+    //Then you'll have an "AuthRestService" that inherits from BaseRestService, and that class will then implement 
+    //the base class and append the version and the name of the actual endpoint.
+    //So when this comment is resolved, I'll be looking for - 
+    //"BaseRestService" class
+    //   this will have at least one string for API_BASE_URL
+    //"AuthRestService" class
+    //    this will use the API_BASE_URL from the BaseRestService class and ADD two additional properties:
+    //    - version
+    //    - endpoint
+    //"AlertRestService" class
+    //   this will use the API_BASE_URL from the BaseRestService class and ADD two additional properties:
+    //    - version
+    //    - endpoint
     const response = await axios({
       method: "post",
       url: "https://dev-api.zeroeyes.com/api/v1/Account/Login",
