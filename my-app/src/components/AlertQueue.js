@@ -22,6 +22,11 @@ const AlertQueue = ({ alertData, onSelectedAlert }) => {
 
 
   let alerts = descending.map((alert, index) =>
+  // just like the "baseurl" might change per enviornment, think dev-api.zeroeyes.com vs qa-api.zeroeyes.com etc
+  // in different deployed versions of the application, the number of alerts to show might change as well.
+  // when this comment is resolved, I'll be looking for a "config" file that contains a variable that can be changed per enviornment.
+  // the environment configuration files should be named "Dev", "QA", "Prod", etc.
+  // and each should have a variable that contains the number of alerts to show.
     index <= 4 ? (
       <AlertThumbnail
         key={alert.id}
