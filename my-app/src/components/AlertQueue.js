@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import classes from "./AlertQueue.module.css";
 import AlertThumbnail from "./AlertThumbnail";
 
@@ -17,7 +17,9 @@ const AlertQueue = ({ alertData, onSelectedAlert }) => {
     setSelectedAlertData(data);
   };
 
-  onSelectedAlert(selectedAlertData);
+  useEffect(() => {
+    onSelectedAlert(selectedAlertData);
+  }, [onSelectedAlert, selectedAlertData])
 
 
 
