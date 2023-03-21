@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react';
+
+import { config as prodConfig } from "../config/Prod";
+import { config as devConfig } from "../config/Dev";
+
 import classes from "./AlertQueue.module.css";
 import AlertThumbnail from "./AlertThumbnail";
+
+const config = process.env.NODE_ENV === 'production' ? prodConfig : devConfig;
 
 const AlertQueue = ({ alertData, onSelectedAlert }) => {
   const alertsArray = alertData.data.data;
@@ -24,7 +30,12 @@ const AlertQueue = ({ alertData, onSelectedAlert }) => {
 
 
   let alerts = descending.map((alert, index) =>
-    index <= 4 ? (
+  // just like the "baseurl" might change per enviornment, think dev-api.zeroeyes.com vs qa-api.zeroeyes.com etc
+  // in different deployed versions of the application, the number of alerts to show might change as well.
+  // when this comment is resolved, I'll be looking for a "config" file that contains a variable that can be changed per enviornment.
+  // the environment configuration files should be named "Dev", "QA", "Prod", etc.
+  // and each should have a variable that contains the number of alerts to show.
+    index < config.alertQueueMax ? (
       <AlertThumbnail
         key={alert.id}
         imgSrc={alert.filename}
