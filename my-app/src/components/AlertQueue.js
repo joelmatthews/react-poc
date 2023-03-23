@@ -1,6 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import { config as prodConfig } from "../config/Prod";
+import { config as devConfig } from "../config/Dev";
+
 import classes from "./AlertQueue.module.css";
 import AlertThumbnail from "./AlertThumbnail";
+
+const config = process.env.NODE_ENV === 'production' ? prodConfig : devConfig;
 
 const AlertQueue = ({ alertData, onSelectedAlert }) => {
   const alertsArray = alertData.data.data;
@@ -17,7 +23,9 @@ const AlertQueue = ({ alertData, onSelectedAlert }) => {
     setSelectedAlertData(data);
   };
 
-  onSelectedAlert(selectedAlertData);
+  useEffect(() => {
+    onSelectedAlert(selectedAlertData);
+  }, [onSelectedAlert, selectedAlertData])
 
 
 
@@ -27,7 +35,7 @@ const AlertQueue = ({ alertData, onSelectedAlert }) => {
   // when this comment is resolved, I'll be looking for a "config" file that contains a variable that can be changed per enviornment.
   // the environment configuration files should be named "Dev", "QA", "Prod", etc.
   // and each should have a variable that contains the number of alerts to show.
-    index <= 4 ? (
+    index < config.alertQueueMax ? (
       <AlertThumbnail
         key={alert.id}
         imgSrc={alert.filename}

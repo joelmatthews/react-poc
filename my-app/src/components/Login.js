@@ -1,6 +1,9 @@
 import { Form, json, redirect } from "react-router-dom";
 import axios from "axios";
 
+
+import AuthRestService from '../services/AuthRestService';
+
 import classes from './Login.module.css';
 
 const Login = () => {
@@ -45,9 +48,14 @@ export async function action({ request }) {
     //   this will use the API_BASE_URL from the BaseRestService class and ADD two additional properties:
     //    - version
     //    - endpoint
+
+    const authRestService = new AuthRestService();
+
+    const loginUrl = authRestService.loginUrl();
+
     const response = await axios({
       method: "post",
-      url: "https://dev-api.zeroeyes.com/api/v1/Account/Login",
+      url: loginUrl,
       headers: {
         "Content-Type": "application/json",
         Accept: "text/plain",
