@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./pages/RootLayout";
 import HomePage from "./pages/HomePage";
 import AlertsPage, { loader as alertsLoader } from "./pages/AlertsPage";
+import { action as alertsAction } from "./components/AlertBody";
 import ErrorPage from "./pages/ErrorPage";
 import { action as loginAction } from "./components/Login";
 import { action as logoutAction } from "./pages/Logout";
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
         path: "alerts",
         element: <AlertsPage />,
         loader: alertsLoader,
+        action: alertsAction,
       },
       { path: "logout", action: logoutAction },
     ],

@@ -1,4 +1,7 @@
 import authInstance from "./axiosInterceptors";
+import AuthRestService from "../services/AuthRestService";
+
+const authRestService = new AuthRestService();
 
 export function getTokens() {
   const accessToken = localStorage.getItem("token");
@@ -15,9 +18,11 @@ export function getTokens() {
 }
 
 export async function refreshTokens () {
+  const refreshUrl = authRestService.refreshUrl();
+
   const tokens = getTokens();
 
-  const refreshed = await authInstance.post("https://dev-api.zeroeyes.com/api/v1/Account/RefreshToken", {
+  const refreshed = await authInstance.post(refreshUrl, {
     refreshtoken: tokens.refreshToken,
     accesstoken: tokens.accessToken
   });

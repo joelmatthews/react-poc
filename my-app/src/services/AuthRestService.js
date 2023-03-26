@@ -9,6 +9,10 @@ class AuthRestService extends BaseRestService {
     loginUrl() {
         return this.buildUrl(`${this.AUTH_ENDPOINT}/Login`)
     }
+
+    refreshUrl() {
+        return this.buildUrl(`${this.AUTH_ENDPOINT}/Account/RefreshToken`)
+    }
 }
 
 export default AuthRestService;
