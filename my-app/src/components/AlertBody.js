@@ -5,6 +5,7 @@ import { config as devConfig } from "../config/Dev";
 
 import AlertRestService from "../services/AlertRestService";
 import authInstance from "../util/axiosInterceptors";
+import { refreshTokens } from "../util/auth";
 
 import classes from "./AlertBody.module.css";
 import Canvas from "./Canvas";
@@ -25,8 +26,7 @@ const AlertBody = ({ selectedAlert }) => {
     alertImage.onload = function () {
       context.clearRect(0, 0, 640, 360);
       context.drawImage(alertImage, 0, 0, 640, 360);
-    }
-
+    };
   };
 
   return (
@@ -44,7 +44,11 @@ const AlertBody = ({ selectedAlert }) => {
         </div>
         <fetcher.Form method="put" action="/alerts">
           <div>
-            <input type="hidden" name="selectedAlert" value={JSON.stringify(selectedAlert)} />
+            <input
+              type="hidden"
+              name="selectedAlert"
+              value={JSON.stringify(selectedAlert)}
+            />
             <button>False Positive</button>
           </div>
         </fetcher.Form>
@@ -59,8 +63,9 @@ const AlertBody = ({ selectedAlert }) => {
 export default AlertBody;
 
 export const action = async ({ request, params }) => {
+  refreshTokens();
   const formData = await request.formData();
-  const alertData = formData.get('selectedAlert');
+  const alertData = formData.get("selectedAlert");
   const alert = JSON.parse(alertData);
 
   console.log(alert);
@@ -85,8 +90,8 @@ export const action = async ({ request, params }) => {
         dispatchcleared: alert.dispatchcleared,
         cameraid: alert.cameraid,
         clientid: alert.clientid,
-        tags: alert.tags
-      })
+        tags: alert.tags,
+      });
 
       console.log(response);
       return response;
